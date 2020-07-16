@@ -1,0 +1,54 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+<div class="card">
+	<div class="card-body">
+		<!-- 更改用户密码模块 -->
+		<form id="go" action="user.php?act=reset" method="post">
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">原密码：</label>
+				<input type="text" name="old" class="col-6 form-control">
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">新密码：</label>
+				<input id="pwd1" type="password" name="new" class="col-6 form-control">
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">确认新密码：</label>
+				<input id="pwd2" type="password" name="u_password" class="col-6 form-control">
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<button id="btn" type="button" class="col btn btn-primary">修改密码</button>
+				<div class="col"></div>
+			</div>
+		</form>
+		<!-- 注销用户模块 -->
+		<form action="user.php?act=cancel" method="post">
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">密码：</label>
+				<input type="text" name="u_password" class="col-6 form-control">
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<button id="cancel" type="submit" class="col btn btn-danger">注销账号</button>
+				<div class="col"></div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- 表单验证操作 -->
+<script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.slim.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btn").click(function() {
+			if ($('#pwd1').val() == '') {
+				alert('密码不能为空');
+			} else {
+				if ($('#pwd1').val() == $('#pwd2').val()) {
+					$("#go").submit();
+				} else {
+					alert('两次密码不一致');
+				}
+			}
+		});
+	});
+</script>

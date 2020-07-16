@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>后台系统</title>
+		<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+		<script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.slim.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.staticfile.org/popper.js/2.4.0/umd/popper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<!-- 管理员主界面 -->
+	<body>
+		<nav class="navbar navbar-dark bg-primary navbar-expand fixed-top">
+			<div class="container">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.php">网上商城</a>
+					</li>
+					<li class="nav-item">
+						<a class="navbar-brand" href="admin.php">后台系统</a>
+					</li>
+				</ul>
+				<span class="navbar-text">
+					<?php echo "欢迎您，".$_SESSION['a_name']; ?>
+					<a href="admin.php?act=quit">安全退出</a>
+				</span>
+			</div>
+		</nav>
+		<div style="height: 50px;"></div>
+		<div class="container">
+			<div style="height: 25px;"></div>
+			<div class="row">
+				<!-- 功能栏列表 -->
+				<div class="col-2 nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+					<a id="order" class="nav-link active" data-toggle="pill" href="" role="tab" aria-controls="v-pills-home" aria-selected="true">订单管理</a>
+					<a id="bb" class="nav-link" data-toggle="pill" href="" role="tab" aria-controls="v-pills-home" aria-selected="true">轮播图管理</a>
+					<a id="goods" class="nav-link" data-toggle="pill" href="" role="tab" aria-controls="v-pills-home" aria-selected="true">商品管理</a>
+					<!-- <a id="user" class="nav-link" data-toggle="pill" href="" role="tab" aria-controls="v-pills-home" aria-selected="true">用户管理</a> -->
+				</div>
+				<!-- 功能窗口 -->
+				<iframe id="myiframe" class="col-9" src="order.php?act=list" name="myiframe" onload="this.height=myiframe.document.body.scrollHeight"
+				 frameborder="0" scrolling="no"></iframe>
+			</div>
+			<!-- 切换功能操作 -->
+			<script>
+				$(document).ready(function() {
+					$("#order").click(function() {
+						$("#myiframe").attr("src", "order.php?act=list");
+					});
+					$("#bb").click(function() {
+						$("#myiframe").attr("src", "bb.php");
+					});
+					$("#goods").click(function() {
+						$("#myiframe").attr("src", "goods.php?act=list");
+					});
+					$("#user").click(function() {
+						$("#myiframe").attr("src", "user.php");
+					});
+				});
+			</script>

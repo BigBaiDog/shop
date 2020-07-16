@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+<!-- 展示用户订单信息界面 -->
+<div class="card">
+	<div class="card-header bg-primary text-white">订单详情</div>
+	<div class="card-body">
+		<form>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">订单号：</label>
+				<input type="text" value="<?php echo $data['o_id']; ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">商品名称：</label>
+				<input type="text" value="<?php echo $data['goods_name']; ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">规格：</label>
+				<input type="text" value="<?php echo $data['size']; ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">买家：</label>
+				<input type="text" value="<?php echo $data['u_name']; ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">电话：</label>
+				<input type="text" value="<?php echo $data['phone']; ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">地址：</label>
+				<input type="text" value="<?php echo $data['address']; ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">下单时间：</label>
+				<input type="text" value="<?php echo $data['add_time']; ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">订单状态：</label>
+				<input type="text" value="<?php if($data['state']==0){echo " 进行中"; }elseif($data['state']>0){echo "已完成";}else{echo "已取消";} ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<?php if($data['state']==0){ ?>
+				<div class="col">
+					<a href="myorder.php?act=cancel&o_id=<?php echo $data['o_id']; ?>">
+						<button type="button" class="col btn btn-danger">取消订单</button>
+					</a>
+				</div>
+				<?php } ?>
+				<div class="col">
+					<a href="myorder.php?act=list">
+						<button type="button" class="col btn btn-secondary">返回</button>
+					</a>
+				</div>
+				<div class="col"></div>
+			</div>
+		</form>
+		<div class="alert alert-primary">
+			<strong>注意：</strong>已下单不能修改，只能取消订单.
+		</div>
+	</div>
+</div>

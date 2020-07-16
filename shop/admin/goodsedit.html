@@ -1,0 +1,58 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+<!-- 添加/编辑商品界面 -->
+<div class="card">
+	<div class="card-header bg-primary text-white">
+		<?php if(empty($_GET['g_id'])){ echo '添加商品'; }else { echo '编辑商品'; }?>
+	</div>
+	<div class="card-body">
+		<?php if(empty($_GET['g_id'])){ ?>
+		<form action="goodsadd.php" method="post">
+		<?php }else{ ?>
+		<!-- 更改商品图片模块 -->
+		<form action="goodsimg.php?g_id=<?php echo $goods['g_id']; ?>" method="post" enctype="multipart/form-data">
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">商品图片：</label>
+				<div class="col-3">
+					<img src="<?php echo '../img/goods/'.$goods['g_id'].'.jpg?rand='.rand(); ?>" class="img-fluid" onerror="this.src='../img/goods/default.jpg'" />
+				</div>
+				<div class="col-3">
+					<input name="img" type="file">
+				<button type="submit" class="col btn btn-primary">保存图片</button>
+				</div>
+			</div>
+		</form>
+		<form action="goodsedit.php" method="post">
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">商品编号：</label>
+				<input type="text" name="g_id" value="<?php echo $goods['g_id']; ?>" class="col-6 form-control" readonly>
+			</div>
+		<?php }?>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">商品名称：</label>
+				<input type="text" name="goods_name" value="<?php echo $goods['goods_name']; ?>" class="col-6 form-control">
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">商品价格：</label>
+				<input type="text" name="price" value="<?php echo $goods['price']; ?>" class="col-6 form-control">
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">商品规格：</label>
+				<input type="text" name="size" value="<?php echo $goods['size']; ?>" class="col-6 form-control">
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">商品介绍：</label>
+				<textarea name="details" class="col-6 form-control"rows="8"><?php echo $goods['details']; ?></textarea>
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col">
+					<button type="submit" class="col btn btn-primary">提交</button>
+				</div>
+				<div class="col"><a href="goods.php?act=list">
+					<button type="button" class="col btn btn-secondary">返回</button></a>
+				</div>
+				<div class="col"></div>
+			</div>
+		</form>
+	</div>
+</div>

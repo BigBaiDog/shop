@@ -1,0 +1,23 @@
+<!-- 展示商品列表界面 -->
+<div class="row">
+	<?php foreach($data as $goods){ ?>
+	<div class="col-sm-6 col-md-4 col-xl-3" style="display: inline-block; padding: 15px;">
+		<div class="card">
+			<a href="goods.php?act=show&g_id=<?php echo $goods['g_id']; ?>">
+				<img src="<?php echo './img/goods/'.$goods['g_id'].'.jpg?rand='.rand(); ?>" class="card-img-top img-fluid" onerror="this.src='./img/goods/default.jpg'" />
+				<div class="card-body">
+					<div class="row">
+						<h5 class="card-title col text-truncate">
+							<?php echo $goods['goods_name']; ?>
+						</h5>
+						<p class="card-text col text-right">
+							<?php echo "￥".$goods['price']; ?>
+						</p>
+					</div>
+					<a href="goods.php?act=buy&g_id=<?php echo $goods['g_id']; ?>" class="btn btn-primary btn-block">购买</a>
+				</div>
+			</a>
+		</div>
+	</div>
+	<?php } ?>
+</div>

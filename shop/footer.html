@@ -1,0 +1,28 @@
+</div>
+<!-- 底部栏界面 -->
+<div class="jumbotron text-center" style="margin:1rem 0 0">
+	<p>个人博客：<a href="https://24blog.ml/" target="_blank">24blog.ml</a></p>
+</div>
+<a href="#" id="toTop" class="badge badge-pill badge-primary" style="position: fixed;bottom: 30px;right: 30px;">TOP</a>
+</body>
+<!-- 一键回到底部jq操作 -->
+<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var ScrolltoTop = $("#toTop");
+		$(ScrolltoTop).hide();
+		$(window).scroll(function() {
+			if ($(window).scrollTop() == "0") {
+				$(ScrolltoTop).fadeOut("slow")
+			} else {
+				$(ScrolltoTop).fadeIn("slow")
+			}
+		});
+		$(ScrolltoTop).click(function() {
+			$('html, body').animate({
+				scrollTop: 0
+			}, 600)
+		})
+	});
+</script>
+</html>

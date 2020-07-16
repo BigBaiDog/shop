@@ -1,0 +1,29 @@
+<div style="height: 10px;"></div>
+<!-- 个人中心界面 -->
+<div class="row">
+	<div class="col-2 nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+		<!-- 用户头像模块 -->
+		<img src="<?php echo './img/avatar/'.$_SESSION['u_id'].'.jpg?rand='.rand(); ?>" style="margin-bottom: 15px;" class="img-thumbnail mx-auto"onerror="this.src='./img/avatar/default.jpg'" />
+		<!-- 功能列表模块 -->
+		<a id="myorder" class="nav-link active" data-toggle="pill" href="" role="tab" aria-controls="v-pills-home" aria-selected="true">我的订单</a>
+		<a id="my" target="myiframe" class="nav-link" data-toggle="pill" href="" role="tab" aria-controls="v-pills-home" aria-selected="true">个人信息</a>
+		<a id="safe" class="nav-link" data-toggle="pill" href="" role="tab" aria-controls="v-pills-home" aria-selected="true">安全设置</a>
+	</div>
+	<!-- 功能窗口模块 -->
+	<iframe id="myiframe" class="col-9" src="myorder.php?act=list" name="myiframe" onload="this.height=myiframe.document.body.scrollHeight"
+	 frameborder="0" scrolling="no"></iframe>
+</div>
+<!-- 功能跳转操作 -->
+<script>
+	$(document).ready(function() {
+		$("#myorder").click(function() {
+			$("#myiframe").attr("src", "myorder.php?act=list");
+		});
+		$("#my").click(function() {
+			$("#myiframe").attr("src", "mydata.php");
+		});
+		$("#safe").click(function() {
+			$("#myiframe").attr("src", "mysafe.html");
+		});
+	});
+</script>

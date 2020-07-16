@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+<!-- 用户信息模块 -->
+<div class="card">
+	<div class="card-body">
+		<!-- 用户头像管理模块 -->
+		<form action="myavatar.php" method="post" enctype="multipart/form-data">
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">头像：</label>
+				<div class="col-3">
+					<img src="<?php echo './img/avatar/'.$_SESSION['u_id'].'.jpg?rand='.rand(); ?>" class="img-fluid" onerror="this.src='./img/avatar/default.jpg'" />
+				</div>
+				<div class="col-3">
+					<input name="avatar" type="file">
+				<button type="submit" class="col btn btn-primary">保存头像</button>
+				</div>
+			</div>
+		</form>
+		<!-- 用户信息管理模块 -->
+		<form id="go" action="mydata.php" method="post">
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">编号：</label>
+				<input type="text" name="u_id" value="<?php echo $data['u_id']; ?>" class="col-6 form-control" readonly>
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">名称：</label>
+				<input id="name" type="text" name="u_name" value="<?php echo $data['u_name']; ?>" class="col-6 form-control">
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">邮箱：</label>
+				<input type="email" name="email" value="<?php echo $data['email']; ?>" class="col-6 form-control">
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">电话：</label>
+				<input type="text" name="phone" value="<?php echo $data['phone']; ?>" class="col-6 form-control">
+			</div>
+			<div class="form-group row align-items-center">
+				<label class="col-3 text-right">地址：</label>
+				<input type="text" name="address" value="<?php echo $data['address']; ?>" class="col-6 form-control">
+			</div>
+			<div class="row">
+				<div class="col"></div>
+				<button id="btn" type="button" class="col btn btn-primary">更改信息</button>
+				<div class="col"></div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- 表单验证操作 -->
+<script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.slim.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btn").click(function(){
+			if($('#name').val()==''){
+				alert('用户名不能为空');
+			}else{
+				$("#go").submit();
+			}
+		});
+	});
+</script>

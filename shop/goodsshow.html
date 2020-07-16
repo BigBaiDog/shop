@@ -1,0 +1,37 @@
+<!-- 展示商品信息界面 -->
+<div class="d-flex justify-content-center">
+	<div class="card" style="display: inline-block;">
+		<!-- 商品照片模块 -->
+		<div class="align-top" style="display: inline-block;">
+			<img src="<?php echo './img/goods/'.$goods['g_id'].'.jpg?rand='.rand(); ?>" class="card-img-top" style="width: 400px;height: 400px;" onerror="this.src='./img/goods/default.jpg'" />
+		</div>
+		<!-- 商品信息模块 -->
+		<div class="card-body align-top" style="width: 400px;height: 400px;display: inline-block;">
+			<h4 class="card-title" style="font-size: 3rem;">
+				<?php echo $goods['goods_name']; ?>
+			</h4>
+			<p class="card-text" style="font-size: 1.5rem;">
+				规格：<?php echo $goods['size']; ?>
+			</p>
+			<p class="card-text" style="font-size: 1.5rem;">
+				价格：<?php echo "￥".$goods['price']; ?>
+			</p>
+			<a href="goods.php?act=buy&g_id=<?php echo $goods['g_id']; ?>">
+				<button type="button" class="btn btn-primary" style="width: 150px;">买</button>
+			</a>
+		</div>
+	</div>
+</div>
+<div style="height: 1rem;"></div>
+<!-- 商品详情模块 -->
+<ul class="nav nav-tabs">
+	<li class="nav-item">
+		<div class="nav-link"></div>
+	</li>
+	<li class="nav-item">
+		<div class="nav-link active text-primary">商品详情</div>
+	</li>
+</ul>
+<div>
+	<?php echo $goods['details']; ?>
+</div>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>后台系统</title>
+		<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+	</head>
+	<!-- 后台登录界面 -->
+	<body>
+		<div class="container">
+			<div class="d-flex justify-content-center" style="margin-top: 8rem;">
+				<div class="card">
+					<div class="card-header bg-primary text-white">网上商城后台系统</div>
+					<div class="card-body">
+						<form action="admin.php?act=signin" method="post">
+							<div class="form-group">
+								<label>管理员：</label>
+								<input type="text" name="a_name" class="form-control">
+							</div>
+							<div class="form-group">
+								<label>密码：</label>
+								<input type="password" name="a_password" class="form-control">
+							</div>
+							<button type="submit" class="btn btn-primary">登录</button>
+							<a href="../index.php">
+								<button type="button" class="btn btn-secondary">退出</button></a>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-primary" style="width: 300px; margin: 1rem auto;">
+				<strong>本站点为展示Demo ~ ~ ~</strong><br>
+				管理员账号密码均为：admin
+			</div>
+		</div>
+	</body>
+</html>

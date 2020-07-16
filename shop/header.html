@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>网上商城</title>
+		<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+		<script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.slim.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.staticfile.org/popper.js/2.4.0/umd/popper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!-- 顶部栏界面 -->
+		<nav class="navbar navbar-dark bg-primary navbar-expand fixed-top">
+			<div class="container">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="navbar-brand" href="index.php">网上商城</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./admin/index.php">后台系统</a>
+					</li>
+				</ul>
+				<!-- 搜索栏模块 -->
+				<form class="form-inline my-2 my-lg-0" action="index.php">
+					<input class="form-control mr-sm-2" type="search" name="key" placeholder="请搜索商品..." aria-label="Search">
+					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
+				</form>
+				<!-- 登录信息模块 -->
+				<span class="navbar-text">
+					<?php if(empty($_SESSION['u_name'])){ ?>
+					请您<a data-toggle="modal" data-target="#signin"> 登录 </a>/<a data-toggle="modal" data-target="#register"> 注册 </a>用户
+					<?php } else { ?>
+					<a href="user.php">
+						<?php echo $_SESSION['u_name']; ?>的个人中心</a> | <a href="user.php?act=quit">退出登录</a>
+					<?php  }?>
+				</span>
+			</div>
+		</nav>
+		<!-- 登录框模块 -->
+		<div class="modal fade" id="signin">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<!-- 模态框头部 -->
+					<div class="modal-header">
+						<h4 class="modal-title text-primary">登录</h4>
+						<button type="button" class="btn bg-light" data-dismiss="modal" data-toggle="modal" data-target="#register">注册</button>
+					</div>
+					<!-- 模态框主体 -->
+					<form action="user.php?act=signin" method="post">
+						<div class="modal-body">
+							<div class="form-group row">
+								<label class="col-3 text-right">用户：</label>
+								<input type="text" name="u_name" class="form-control col-6">
+							</div>
+							<div class="form-group row">
+								<label class="col-3 text-right">密码：</label>
+								<input type="password" name="u_password" class="form-control col-6">
+							</div>
+
+						</div>
+						<!-- 模态框底部 -->
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">登录</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 注册框模块 -->
+		<div class="modal fade" id="register">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<!-- 模态框头部 -->
+					<div class="modal-header">
+						<h4 class="modal-title text-primary">注册</h4>
+						<button type="button" class="btn bg-light" data-dismiss="modal" data-toggle="modal" data-target="#signin">登录</button>
+					</div>
+					<!-- 模态框主体 -->
+					<form id="go" action="user.php?act=register" method="post">
+						<div class="modal-body">
+							<div class="form-group row">
+								<label class="col-3 text-right">姓名：</label>
+								<input id="name" type="text" name="u_name" class="form-control col-6">
+							</div>
+							<div class="form-group row">
+								<label class="col-3 text-right">密码：</label>
+								<input id="pwd1" type="password" name="password" class="form-control col-6">
+							</div>
+							<div class="form-group row">
+								<label class="col-3 text-right">确认密码：</label>
+								<input id="pwd2" type="password" name="u_password" class="form-control col-6">
+							</div>
+
+						</div>
+						<!-- 模态框底部 -->
+						<div class="modal-footer">
+							<button type="button" id="btn" class="btn btn-primary">注册</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div style="height: 60px;"></div>
+		<div class="container">
+			<!-- 表单验证操作 -->
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$("#btn").click(function() {
+						if ($('#name').val() == '' || $('#pwd1').val() == '') {
+							alert('用户名和密码都不能为空');
+						} else {
+							if ($('#pwd1').val() == $('#pwd2').val()) {
+								$("#go").submit();
+							} else {
+								alert('两次密码不一致');
+							}
+						}
+					});
+				});
+			</script>

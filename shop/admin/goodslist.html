@@ -1,0 +1,62 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+<div class="card">
+	<div class="card-body">
+		<table class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th>商品名称</th>
+					<th>商品价格</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php if(empty($data)){ ?>
+				<tr>
+					<td colspan="3">暂无商品</td>
+				</tr>
+				<?php } foreach($data as $goods){ ?>
+				<tr>
+					<td>
+						<?php echo $goods['goods_name']; ?>
+					</td>
+					<td>
+						<?php echo "￥".$goods['price']; ?>
+					</td>
+					<td>
+						<a href="goods.php?act=edit&g_id=<?php echo $goods['g_id']; ?>">
+							<span class="badge badge-primary">编辑</span>
+						</a>
+						/
+						<a href="goods.php?act=del&g_id=<?php echo $goods['g_id']; ?>">
+							<span class="badge badge-danger">删除</span>
+						</a>
+					</td>
+				</tr>
+				<?php } ?>
+			</tbody>
+		</table>
+		<a class="float-left" href="goods.php?act=add">
+			<button class="btn btn-primary">添加商品</button>
+		</a>
+		<!-- 分页按钮组 -->
+		<ul class="pagination float-right">
+			<?php if($page!=1) { ?>
+			<li class="page-item"><a class="page-link" href="goods.php?act=list&page=1">1</a></li>
+			<?php } ?>
+			<li class="page-item <?php if($page==1) {echo 'disabled';} ?>">
+				<a class="page-link" href="goods.php?act=list&page=<?php echo $page-1; ?>"><<</a>
+			</li>
+			<li class="page-item active">
+				<a class="page-link" href="#"><?php echo $page; ?></a>
+			</li>
+			<li class="page-item <?php if($page==$total||$total==0) {echo 'disabled';} ?>">
+				<a class="page-link" href="goods.php?act=list&page=<?php echo $page+1; ?>">>></a>
+			</li>
+			<?php if($page!=$total&&$total!=0) { ?>
+			<li class="page-item">
+				<a class="page-link" href="goods.php?act=list&page=<?php echo $total; ?>"><?php echo $total; ?></a>
+			</li>
+			<?php } ?>
+		</ul>
+	</div>
+</div>
